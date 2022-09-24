@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { notAlphabet, isTyped } from "../../utils/helper";
+import { isTyped } from "../../utils/helper";
 
 type Props = {
   inputs: string;
@@ -7,23 +7,22 @@ type Props = {
 };
 
 const KEYBOARD = {
-  row1: "QWERTYUIOP[]",
-  row2: "ASDFGHJKL;'",
-  row3: "ZXCVBNM,./",
+  row1: "QWERTYUIOP",
+  row2: "ASDFGHJKL",
+  row3: "ZXCVBNM",
 };
 
 const Keyboard = ({ inputs, validatedSetInputs }: Props) => {
   const getKeyStatusClass = useCallback(
     (key: string) => {
       if (isTyped(inputs, key)) return "typed";
-      if (notAlphabet(key)) return "symbol";
       return "";
     },
     [inputs]
   );
 
   const handleKeyClick = (key: string) => {
-    if (!(isTyped(inputs, key) || notAlphabet(key))) {
+    if (!isTyped(inputs, key)) {
       validatedSetInputs(inputs + key);
     }
   };
