@@ -9,6 +9,7 @@ const Input = ({ inputs, validatedSetInputs }: Props) => {
       className="input"
       value={inputs}
       onChange={(e) => validatedSetInputs(e.target.value.toUpperCase())}
+      placeholder={`Getting start with 'A'`}
     />
   );
 };
