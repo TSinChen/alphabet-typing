@@ -82,14 +82,21 @@
 
 .records {
   position: absolute;
-  padding: 0 2rem;
   bottom: 0px;
   right: 0;
-  max-height: 31.5rem;
-  font-size: 2rem;
-  overflow-y: scroll;
+
+  &__button {
+    position: absolute;
+    top: -2rem;
+    right: 2rem;
+    transform: translateY(-100%);
+  }
 
   &__list {
+    max-height: 31.5rem;
+    padding: 0 2rem;
+    font-size: 2rem;
+    overflow-y: scroll;
     list-style: none;
   }
 

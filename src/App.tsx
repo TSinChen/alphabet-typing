@@ -28,6 +28,10 @@ const App = () => {
     setInputs("");
   };
 
+  const clearRecords = () => {
+    setRecords([]);
+  };
+
   useEffect(() => {
     setIsTyping(Boolean(inputs));
   }, [inputs]);
@@ -66,7 +70,9 @@ const App = () => {
         )}
         <Keyboard inputs={inputs} validatedSetInputs={validatedSetInputs} />
       </div>
-      <Records records={[...records].reverse()} />
+      {records.length > 0 && (
+        <Records records={[...records].reverse()} clearRecords={clearRecords} />
+      )}
     </>
   );
 };

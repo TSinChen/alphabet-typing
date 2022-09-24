@@ -1,12 +1,14 @@
 import { useMemo } from "react";
 
 import { Record } from "../../utils/type";
+import Button from "../Button/Button";
 
 type Props = {
   records: Record[];
+  clearRecords: () => void;
 };
 
-const Records = ({ records }: Props) => {
+const Records = ({ records, clearRecords }: Props) => {
   const bestIndex = useMemo(
     () =>
       records.reduce(
@@ -18,6 +20,11 @@ const Records = ({ records }: Props) => {
 
   return (
     <div className="records">
+      <div className="records__button">
+        <Button onClick={clearRecords} size="small">
+          {`Clear Record${records.length > 0 ? "s" : ""}`}
+        </Button>
+      </div>
       <ul className="records__list">
         {records.map((record, index) => (
           <li key={record.date} className="records__item">
