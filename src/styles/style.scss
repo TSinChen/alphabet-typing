@@ -1,0 +1,58 @@
+@import "./reset";
+
+.container {
+  display: flex;
+  width: 80rem;
+  margin: 8rem auto;
+  align-items: center;
+  flex-direction: column;
+
+  > *:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+}
+
+.input {
+  width: 100%;
+  max-width: 21.5em;
+  padding: 1.4rem;
+  font-size: 3rem;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.keyboard {
+  &__row {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__key {
+    display: flex;
+    margin: 1rem;
+    width: 5rem;
+    height: 5rem;
+    font-size: 2.4rem;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #555;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s;
+
+    &:hover {
+      transform: translateY(-3px);
+    }
+
+    &:active {
+      transform: translateY(2px);
+    }
+
+    &.typed,
+    &.symbol {
+      cursor: default;
+      opacity: 0.3;
+    }
+  }
+}
