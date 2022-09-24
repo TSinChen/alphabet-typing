@@ -9,7 +9,9 @@ const Input = ({ inputs, validatedSetInputs }: Props) => {
       className="input"
       value={inputs}
       onChange={(e) => validatedSetInputs(e.target.value.toUpperCase())}
+      onPaste={(e) => e.preventDefault()}
       placeholder={`Getting start with 'A'`}
+      disabled={inputs.length === 26}
     />
   );
 };
