@@ -103,4 +103,38 @@
 }
 
 .records {
+  position: absolute;
+  padding: 0 2rem;
+  bottom: 0px;
+  right: 0;
+  max-height: 31.5rem;
+  font-size: 2rem;
+  overflow-y: scroll;
+
+  &__list {
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    padding: 7px 0;
+    flex-direction: column;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #555;
+    }
+  }
+
+  &__date {
+    align-self: flex-start;
+  }
+
+  &__time {
+    align-self: flex-end;
+
+    &.best {
+      color: rgb(238, 50, 50);
+      font-weight: bold;
+    }
+  }
 }

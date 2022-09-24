@@ -1,6 +1,8 @@
 import { useState, useEffect, useMemo } from "react";
+import dayjs from "dayjs";
 
-import { Input, Keyboard, Result } from "./components";
+import { Input, Keyboard, Records, Result } from "./components";
+import { useRecords } from "./utils/useRecords";
 
 const A_TO_Z = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -14,6 +16,7 @@ const App = () => {
     () => (endTime - startTime) / 1000,
     [startTime, endTime]
   );
+  const { records, setRecords } = useRecords();
 
   const validatedSetInputs = (input: string) => {
     if (A_TO_Z.startsWith(input)) {
@@ -41,16 +44,30 @@ const App = () => {
     }
   }, [isFinished]);
 
+  useEffect(() => {
+    if (spentTime > 0) {
+      setRecords((prev) =>
+        prev.concat({
+          date: dayjs().format("YYYY-MM-DD HH:mm:ss"),
+          time: spentTime,
+        })
+      );
+    }
+  }, [setRecords, spentTime]);
+
   return (
-    <div className="container">
-      <h1 className="title">From A to Z</h1>
-      {isFinished ? (
-        <Result spentTime={spentTime} handleReset={handleReset} />
-      ) : (
-        <Input inputs={inputs} validatedSetInputs={validatedSetInputs} />
-      )}
-      <Keyboard inputs={inputs} validatedSetInputs={validatedSetInputs} />
-    </div>
+    <>
+      <div className="container">
+        <h1 className="title">From A to Z</h1>
+        {isFinished ? (
+          <Result spentTime={spentTime} handleReset={handleReset} />
+        ) : (
+          <Input inputs={inputs} validatedSetInputs={validatedSetInputs} />
+        )}
+        <Keyboard inputs={inputs} validatedSetInputs={validatedSetInputs} />
+      </div>
+      <Records records={[...records].reverse()} />
+    </>
   );
 };
 
