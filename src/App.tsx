@@ -15,6 +15,7 @@ const App = () => {
 
   return (
     <div className="container">
+      <h1 className="title">From A to Z</h1>
       <Input inputs={inputs} validatedSetInputs={validatedSetInputs} />
       <Keyboard inputs={inputs} validatedSetInputs={validatedSetInputs} />
     </div>
